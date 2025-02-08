@@ -12,6 +12,39 @@ public class BoardState {
         this.boardState = new int[width][height];
     }
 
+    public void render() {
+        StringBuilder builder = new StringBuilder();
+        String[][] boardStateRender = new String[width][height];
+
+        for (int i = 0; i < boardState.length; i++) {
+            for (int j = 0; j < boardState[i].length; j++) {
+                if (boardState[i][j] == 0) {
+                    boardStateRender[i][j] = " # ";
+                }else{
+                    boardStateRender[i][j] = " ### ";
+                }
+            }
+        }
+        for( String[] row : boardStateRender ) {
+            System.out.println(Arrays.toString(row));
+        }
+
+//        builder.append("| ");
+//        for (int[] column : this.boardState) {
+//            for (int x : column) {
+//                if (x == 0) {
+//                    builder.append(" # ");
+//                } else {
+//                    builder.append(" ### ");
+//                }
+//            }
+//            builder.append(" |");
+//
+//        }
+//        System.out.println(builder.toString());
+
+    }
+
     public int[][] deadState() {
 
         Arrays.stream(this.boardState).forEach(row -> Arrays.fill(row, 0));
@@ -20,7 +53,7 @@ public class BoardState {
 
             for (int col : row) {
 
-                System.out.print(col + " ");
+                System.out.print(col + " #");
             }
             System.out.println();
         }
@@ -48,4 +81,15 @@ public class BoardState {
         return this.boardState;
     }
 
+    public int[][] getBoardState() {
+        return boardState;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
 }
